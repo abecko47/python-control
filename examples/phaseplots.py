@@ -1,19 +1,3 @@
-# phaseplots.py - examples of phase portraits
-# RMM, 24 July 2011
-#
-# This file contains examples of phase portraits pulled from "Feedback
-# Systems" by Astrom and Murray (Princeton University Press, 2008).
-
-import os
-
-import numpy as np
-import matplotlib.pyplot as plt
-from control.phaseplot import phase_plot
-from numpy import pi
-
-# Clear out any figures that are present
-plt.close('all')
-
 #
 # Inverted pendulum
 #
@@ -40,9 +24,11 @@ phase_plot(
     logtime=(3, 0.7)
 )
 
+get_plot()
 # Separatrices
 phase_plot(invpend_ode, X0=[[-2.3056, 2.1], [2.3056, -2.1]], T=6, lingrid=0)
 
+get_plot()
 #
 # Systems of ODEs: damped oscillator example (simulation + phase portrait)
 #
@@ -55,12 +41,13 @@ def oscillator_ode(x, t, m=1., b=1, k=1):
 plt.figure()
 plt.clf()
 phase_plot(oscillator_ode, [-1, 1, 10], [-1, 1, 10], 0.15)
+
 #plt.plot([0], [0], '.')
 # a=gca; set(a,'FontSize',20); set(a,'DataAspectRatio',[1,1,1])
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Damped oscillator, vector field')
-
+get_plot()
 # Generate a phase plot for the damped oscillator
 plt.figure()
 plt.clf()
@@ -79,7 +66,7 @@ plt.plot([0], [0], 'k.')  # 'MarkerSize', AM_data_markersize*3)
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Damped oscillator, vector field and stream lines')
-
+get_plot()
 #
 # Stability definitions
 #
@@ -115,6 +102,7 @@ plt.plot([0], [0], 'k.')  # 'MarkerSize', AM_data_markersize*3)
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Asymptotically stable point')
+get_plot()
 
 # Saddle
 plt.figure()
@@ -140,6 +128,7 @@ plt.plot([0], [0], 'k.')  # 'MarkerSize', AM_data_markersize*3)
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Saddle point')
+get_plot()
 
 # Stable isL
 m = 1
@@ -161,6 +150,4 @@ plt.plot([0], [0], 'k.')  # 'MarkerSize', AM_data_markersize*3)
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Undamped system\nLyapunov stable, not asympt. stable')
-
-if 'PYCONTROL_TEST_EXAMPLES' not in os.environ:
-    plt.show()
+get_plot()
